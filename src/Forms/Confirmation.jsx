@@ -101,29 +101,28 @@ function Confirmation(props) {
           </div>
           <div className="input3">
             <div className="inputfield">
-              <div className="checkbox" style={{}}>
+              <div
+                className="checkbox"
+                style={{ display: "flex", alignItems: "center" }}
+              >
                 <FormGroup>
                   <FormControlLabel control={<Checkbox defaultChecked />} />
-                  <p style={{ bottom: "20px" }}>
-                    {" "}
-                    I understand that my use of the services is governed by the{" "}
-                    <span style={{ color: "green", fontWeight: "500" }}>
-                      Terms of Service
-                    </span>{" "}
-                    or Master Services Agreement,{" "}
-                    <span style={{ color: "green", fontWeight: "500" }}>
-                      Accepted Use Policy
-                    </span>
-                    , and
-                    <span style={{ color: "green", fontWeight: "500" }}>
-                      {" "}
-                      <span style={{ color: "green", fontWeight: "500" }}>
-                        SMS Message Policy
-                      </span>
-                    </span>
-                    .
-                  </p>
                 </FormGroup>
+                <p style={{ margin: 0 }}>
+                  I understand that my use of the services is governed by the{" "}
+                  <span style={{ color: "green", fontWeight: "500" }}>
+                    Terms of Service
+                  </span>{" "}
+                  or Master Services Agreement,{" "}
+                  <span style={{ color: "green", fontWeight: "500" }}>
+                    Accepted Use Policy
+                  </span>
+                  , and{" "}
+                  <span style={{ color: "green", fontWeight: "500" }}>
+                    SMS Message Policy
+                  </span>
+                  .
+                </p>
               </div>
             </div>
           </div>
