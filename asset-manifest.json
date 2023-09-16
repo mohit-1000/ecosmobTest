@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/ecosmobTest/static/css/main.b0ab95f1.css",
-    "main.js": "/ecosmobTest/static/js/main.9acaaef6.js",
+    "main.js": "/ecosmobTest/static/js/main.d3d00cd0.js",
     "static/js/787.e6b3d4ab.chunk.js": "/ecosmobTest/static/js/787.e6b3d4ab.chunk.js",
     "static/media/conference.jpeg": "/ecosmobTest/static/media/conference.9cbb218becd09731852b.jpeg",
     "index.html": "/ecosmobTest/index.html",
     "main.b0ab95f1.css.map": "/ecosmobTest/static/css/main.b0ab95f1.css.map",
-    "main.9acaaef6.js.map": "/ecosmobTest/static/js/main.9acaaef6.js.map",
+    "main.d3d00cd0.js.map": "/ecosmobTest/static/js/main.d3d00cd0.js.map",
     "787.e6b3d4ab.chunk.js.map": "/ecosmobTest/static/js/787.e6b3d4ab.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b0ab95f1.css",
-    "static/js/main.9acaaef6.js"
+    "static/js/main.d3d00cd0.js"
   ]
 }
