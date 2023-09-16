@@ -10,6 +10,7 @@ import BrandRegistration from '../Forms/BrandRegistration';
 import ContactDetails from '../Forms/ContactDetails';
 import Confirmation from '../Forms/Confirmation';
 import { StoreLocalstorage } from './Helper';
+import Preview from '../Forms/Previewpage';
 
 //----------- constant ----------
 const steps = ['Brand Registration', 'Address and Contact', 'Confirm Details'];
@@ -100,9 +101,10 @@ export default function HomePage() {
 
       {activeStep === steps.length ? (
         <React.Fragment>
-          <Typography sx={{ mt: 2, mb: 1 }}>
+          {/* <Typography sx={{ mt: 2, mb: 1 }}>
             All steps completed - you&apos;re finished
-          </Typography>
+          </Typography> */}
+          {activeStep === 3 && <Preview />}
           <Box sx={{ display: 'flex', justifyContent: 'flex-end', pt: 2 }}>
             <Button onClick={handleReset}
               sx={{

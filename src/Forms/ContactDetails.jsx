@@ -12,6 +12,7 @@ function ContactDetails({ isValidation, setDatadataForm }) {
 
   //---------- state, redux state, veriable and hooks
   const [data, setData] = React.useState({});
+  const [webSite, setWebSite] = React.useState(false);
   //---------- life cycles section
   useEffect(() => {
     GetDataLocalstorage("contactDetails").then((data) => {
@@ -21,7 +22,16 @@ function ContactDetails({ isValidation, setDatadataForm }) {
     });
   }, [])
   useEffect(() => {
+    const re = /^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/g
+    let velidate = re.test(data?.website)
+    console.log("++++++",data?.website);
+    if (velidate) {
     setDatadataForm(data)
+    setWebSite(false)
+
+    }else{
+      setWebSite(true)
+    }
   }, [data])
 
   //---------- helpers : other and users action
@@ -103,6 +113,10 @@ function ContactDetails({ isValidation, setDatadataForm }) {
                     size="small"
                     onChange={handleChange}
                     type={"number"}
+                    inputProps={{
+                      type: "number", // Restrict input to numeric values
+                      pattern: "[0-9]*", // Optionally, add a pattern to further restrict input
+                    }}
                   />
                   {!data?.Postal_code && isValidation && <p className="errText"
                   >Please enter Postal code</p>}
@@ -132,6 +146,10 @@ function ContactDetails({ isValidation, setDatadataForm }) {
                 onChange={handleChange}
                 type={"number"}
                 size="small"
+                inputProps={{
+                  type: "number", // Restrict input to numeric values
+                  pattern: "[0-9]*", // Optionally, add a pattern to further restrict input
+                }}
               />
               {!data?.primary_phone && isValidation && <p className="errText">Please enter Primary business phone</p>}
 
@@ -158,8 +176,13 @@ function ContactDetails({ isValidation, setDatadataForm }) {
                 value={data?.phone_number}
                 type={"number"}
                 size="small"
+                inputProps={{
+                  type: "number", // Restrict input to numeric values
+                  pattern: "[0-9]*", // Optionally, add a pattern to further restrict input
+                }}
               />
               {!data?.phone_number && isValidation && <p className="errText">Please enter business phone</p>}
+
             </div>
           </div>
           <div className="input3">
@@ -172,16 +195,17 @@ function ContactDetails({ isValidation, setDatadataForm }) {
                 sx={{ width: "100%" }}
                 name='website'
                 value={data?.website}
-                onChange={(e) => {
-                  const re = /^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/g
-                  let velidate = re.test(e.target.value)
-                  if (velidate) {
-                    handleChange(e)
-                  }
-                }}
+                // onChange={(e) => {
+                //   const re = /^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/g
+                //   let velidate = re.test(e.target.value)
+                //   if (velidate) {
+                //     handleChange(e)
+                //   }
+                // }}
+                onChange={handleChange}
                 size="small"
               />
-              {!data?.website && isValidation && <p className="errText">Please enter valid Website</p>}
+              {(!data?.website||webSite) && (isValidation|| webSite) && <p className="errText">Please enter valid Website</p>}
 
             </div>
             <div className="inputfield">
@@ -209,6 +233,11 @@ function ContactDetails({ isValidation, setDatadataForm }) {
                 }}
                 size="small"
                 type={'email'}
+                inputProps={{
+                  type: "url", // Restrict input to URLs
+                  pattern: "https?://.+",
+                  title: "Enter a valid URL",
+                }}              
               />
               {!data?.email && isValidation && <p className="errText">Please enter email ID</p>}
             </div>
