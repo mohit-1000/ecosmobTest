@@ -11,7 +11,9 @@ function ContactDetails({ isValidation, setDatadataForm }) {
 
   //---------- state, redux state, veriable and hooks
   const [data, setData] = React.useState({});
-
+  const [postal , setPostal] = React.useState('');
+  const [phone1 , setPhone1] = React.useState('');
+  const [phone2, setPhone2] = React.useState('');
   //---------- life cycles section
   useEffect(() => {
     setDatadataForm(data)
@@ -20,6 +22,18 @@ function ContactDetails({ isValidation, setDatadataForm }) {
   //---------- helpers : other and users action
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value })
+  }
+  const phoneNumber = (e) => {
+    const result = e.target.value.replace(/\D/g, '');
+    setPostal(result);
+  }
+  const phoneNumber1 = (e) => {
+    const result1 = e.target.value.replace(/\D/g, '');
+    setPhone1(result1);
+  }
+  const phoneNumber2 = (e) => {
+    const result2 = e.target.value.replace(/\D/g, '');
+    setPhone2(result2);
   }
 
   //---------- main view
@@ -88,10 +102,11 @@ function ContactDetails({ isValidation, setDatadataForm }) {
                     style={{ width: "100%" }}
                     label="Postal code"
                     variant="filled"
+                    value={postal}
                     sx={{ width: "50%" }}
                     name='Postal_code'
                     size="small"
-                    onChange={handleChange}
+                    onChange={phoneNumber}
                   />
                   {!data?.Postal_code && isValidation && <p className="errText"
                   >Please enter Postal code</p>}
@@ -116,8 +131,9 @@ function ContactDetails({ isValidation, setDatadataForm }) {
                 label="Enter legal business phone"
                 variant="filled"
                 sx={{ width: "100%" }}
+                value={phone1}
                 name='primary_phone'
-                onChange={handleChange}
+                onChange={phoneNumber1}
                 size="small"
               />
               {!data?.primary_phone && isValidation && <p className="errText">Please enter Primary business phone</p>}
@@ -141,11 +157,11 @@ function ContactDetails({ isValidation, setDatadataForm }) {
                 variant="filled"
                 sx={{ width: "100%" }}
                 name='phone_number'
-                onChange={handleChange}
+                onChange={phoneNumber2}
+                value={phone2}
                 size="small"
               />
               {!data?.phone_number && isValidation && <p className="errText">Please enter business phone</p>}
-
             </div>
           </div>
           <div className="input3">

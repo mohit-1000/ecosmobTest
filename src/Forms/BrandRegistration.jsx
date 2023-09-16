@@ -68,7 +68,7 @@ function BrandRegistration({ setDatadataForm, isValidation }) {
 
             </div>
             <div className="inputfield">
-              <h5 style={{ marginBottom: 13 }}>
+              <h5 className="lebleBrand">
                 Country Of Registration :{" "}
                 <span
                   style={{
@@ -78,6 +78,7 @@ function BrandRegistration({ setDatadataForm, isValidation }) {
                   *
                 </span>
               </h5>
+              <p className="lebleText">(please make sure you choose your right country)</p>
               <TextField
                 size="small"
                 label="Country Of Registration"
