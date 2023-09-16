@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import BrandRegistration from '../Forms/BrandRegistration';
 import ContactDetails from '../Forms/ContactDetails';
 import Confirmation from '../Forms/Confirmation';
+import { StoreLocalstorage } from './Helper';
 
 //----------- constant ----------
 const steps = ['Brand Registration', 'Address and Contact', 'Confirm Details'];
@@ -48,11 +49,13 @@ export default function HomePage() {
       dataForm?.vertical && dataForm?.businessName && dataForm?.businessID
     )
     ) {
+      StoreLocalstorage("ragistrasion",dataForm)
       handleNextButton()
     }
     else if (dataSecand?.business_address && dataSecand?.State && dataSecand?.Postal_code && dataSecand?.primary_phone
       && dataSecand?.phone_number && dataSecand?.website && dataSecand?.email
     ) {
+      StoreLocalstorage("contactDetails",dataSecand)
       handleNextButton()
     } else {
       setIsIsValidation(true)
@@ -130,7 +133,7 @@ export default function HomePage() {
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2, justifyContent: 'flex-end', }}>
 
             {/* button next and back  */}
-            <Button
+       {  activeStep !==0 &&   <Button
               color="inherit"
               disabled={activeStep === 0}
               
@@ -146,9 +149,9 @@ export default function HomePage() {
               }}
             >
               Back
-            </Button>
+            </Button>}
             
-            <Box sx={{ justifyContent: 'flex-end', }} />
+            <Box sx={{ justifyContent: 'flex-end'}} />
             <Button onClick={handleNext} className='next' sx={{
               width: 130,
               height: 'auto',
@@ -156,6 +159,7 @@ export default function HomePage() {
               borderRadius: 50,
               backgroundColor: 'rgb(63, 176, 41)',
               color: 'white',
+              marginRight:5
             }} >
               {activeStep === steps.length - 1 ? 'Preview' : 'Next'}
             </Button>

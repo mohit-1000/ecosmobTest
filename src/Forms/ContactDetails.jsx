@@ -5,16 +5,21 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { GetDataLocalstorage } from "../Components/Helper";
 
 //---------- components ---------
 function ContactDetails({ isValidation, setDatadataForm }) {
 
   //---------- state, redux state, veriable and hooks
   const [data, setData] = React.useState({});
-  const [postal , setPostal] = React.useState('');
-  const [phone1 , setPhone1] = React.useState('');
-  const [phone2, setPhone2] = React.useState('');
   //---------- life cycles section
+  useEffect(() => {
+    GetDataLocalstorage("contactDetails").then((data) => {
+      if (data) {
+        setData(data)
+      }
+    });
+  }, [])
   useEffect(() => {
     setDatadataForm(data)
   }, [data])
@@ -22,18 +27,6 @@ function ContactDetails({ isValidation, setDatadataForm }) {
   //---------- helpers : other and users action
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value })
-  }
-  const phoneNumber = (e) => {
-    const result = e.target.value.replace(/\D/g, '');
-    setPostal(result);
-  }
-  const phoneNumber1 = (e) => {
-    const result1 = e.target.value.replace(/\D/g, '');
-    setPhone1(result1);
-  }
-  const phoneNumber2 = (e) => {
-    const result2 = e.target.value.replace(/\D/g, '');
-    setPhone2(result2);
   }
 
   //---------- main view
@@ -65,6 +58,7 @@ function ContactDetails({ isValidation, setDatadataForm }) {
                     sx={{ width: "100%" }}
                     name='business_address'
                     onChange={handleChange}
+                    value={data?.business_address}
                     size="small"
 
                   />
@@ -76,7 +70,7 @@ function ContactDetails({ isValidation, setDatadataForm }) {
                   style={{ width: "100%" }}
                   variant="filled"
                   sx={{ width: "50%" }}
-                size="small"
+                  size="small"
                 >
                   <InputLabel id="demo-simple-select-filled-label">
                     Enter city,State
@@ -86,14 +80,15 @@ function ContactDetails({ isValidation, setDatadataForm }) {
                     id="demo-simple-select-filled"
                     name='State'
                     onChange={handleChange}
+                    value={data?.State||20}
                   >
-               
+
                     <MenuItem value={10}>Andhra Pradesh</MenuItem>
                     <MenuItem value={20}>Rajasthan</MenuItem>
                     <MenuItem value={30}>Uttar Pradesh</MenuItem>
-                    <MenuItem value={30}>Maharashtra</MenuItem>
-                    <MenuItem value={30}>Karnataka</MenuItem>
-                    <MenuItem value={30}>Gujarat</MenuItem>
+                    <MenuItem value={40}>Maharashtra</MenuItem>
+                    <MenuItem value={50}>Karnataka</MenuItem>
+                    <MenuItem value={60}>Gujarat</MenuItem>
                   </Select>
                   {!data?.State && isValidation && <p className="errText">Please select state</p>}
                 </FormControl>
@@ -102,11 +97,12 @@ function ContactDetails({ isValidation, setDatadataForm }) {
                     style={{ width: "100%" }}
                     label="Postal code"
                     variant="filled"
-                    value={postal}
+                    value={data?.Postal_code}
                     sx={{ width: "50%" }}
                     name='Postal_code'
                     size="small"
-                    onChange={phoneNumber}
+                    onChange={handleChange}
+                    type={"number"}
                   />
                   {!data?.Postal_code && isValidation && <p className="errText"
                   >Please enter Postal code</p>}
@@ -131,9 +127,10 @@ function ContactDetails({ isValidation, setDatadataForm }) {
                 label="Enter legal business phone"
                 variant="filled"
                 sx={{ width: "100%" }}
-                value={phone1}
+                value={data?.primary_phone}
                 name='primary_phone'
-                onChange={phoneNumber1}
+                onChange={handleChange}
+                type={"number"}
                 size="small"
               />
               {!data?.primary_phone && isValidation && <p className="errText">Please enter Primary business phone</p>}
@@ -157,8 +154,9 @@ function ContactDetails({ isValidation, setDatadataForm }) {
                 variant="filled"
                 sx={{ width: "100%" }}
                 name='phone_number'
-                onChange={phoneNumber2}
-                value={phone2}
+                onChange={handleChange}
+                value={data?.phone_number}
+                type={"number"}
                 size="small"
               />
               {!data?.phone_number && isValidation && <p className="errText">Please enter business phone</p>}
@@ -173,10 +171,17 @@ function ContactDetails({ isValidation, setDatadataForm }) {
                 variant="filled"
                 sx={{ width: "100%" }}
                 name='website'
-                onChange={handleChange}
+                value={data?.website}
+                onChange={(e) => {
+                  const re = /^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/g
+                  let velidate = re.test(e.target.value)
+                  if (velidate) {
+                    handleChange(e)
+                  }
+                }}
                 size="small"
               />
-              {!data?.website && isValidation && <p className="errText">Please enter Website</p>}
+              {!data?.website && isValidation && <p className="errText">Please enter valid Website</p>}
 
             </div>
             <div className="inputfield">
@@ -193,8 +198,17 @@ function ContactDetails({ isValidation, setDatadataForm }) {
                 variant="filled"
                 sx={{ width: "100%" }}
                 name='email'
-                onChange={handleChange}
+                value={data?.email}
+                onChange={(e) => {
+                  const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+                  let velidate = re.test(e.target.value)
+                  console.log(velidate);
+                  if (velidate) {
+                    handleChange(e)
+                  }
+                }}
                 size="small"
+                type={'email'}
               />
               {!data?.email && isValidation && <p className="errText">Please enter email ID</p>}
             </div>

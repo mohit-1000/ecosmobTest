@@ -8,6 +8,7 @@ import Select from "@mui/material/Select";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+import { GetDataLocalstorage } from "../Components/Helper";
 
 
 //---------- components ---------
@@ -17,6 +18,14 @@ function BrandRegistration({ setDatadataForm, isValidation }) {
   const [data, setData] = React.useState({});
 
   //---------- life cycles section
+
+  useEffect(() => {
+    GetDataLocalstorage("ragistrasion").then((data) => {
+      if (data) {
+        setData(data)
+      }
+    });
+  }, [])
   useEffect(() => {
     setDatadataForm(data)
   }, [data])
@@ -62,6 +71,7 @@ function BrandRegistration({ setDatadataForm, isValidation }) {
                 sx={{ width: "100%" }}
                 size="small"
                 name="businessName"
+                value={data?.businessName}
                 onChange={handleChange}
               />
               {!data?.businessName && isValidation && <p className="errText">Please enter legal business name</p>}
@@ -86,6 +96,8 @@ function BrandRegistration({ setDatadataForm, isValidation }) {
                 sx={{ width: "100%" }}
                 name='country'
                 onChange={handleChange}
+                value={data?.country}
+
               />
               {!data?.country && isValidation && <p className="errText">Please enter Country Of Registration</p>}
             </div>
@@ -110,6 +122,8 @@ function BrandRegistration({ setDatadataForm, isValidation }) {
                 name='businessID'
                 onChange={handleChange}
                 size="small"
+                value={data?.businessID}
+
               />
               {!data?.businessID && isValidation && <p className="errText">Please enter Federal Business ID</p>}
 
@@ -137,17 +151,17 @@ function BrandRegistration({ setDatadataForm, isValidation }) {
                 <Select
                   labelId="demo-simple-select-filled-label"
                   id="demo-simple-select-filled"
-                  value={data?.vertical}
+                  value={data.vertical ? 20 :""}
                   name='vertical'
                   onChange={handleChange}
                 >
                   <MenuItem value={10}>Aerospace (aircraft manufacturing)</MenuItem>
                   <MenuItem value={20}>Chemical (manufacturing)</MenuItem>
                   <MenuItem value={30}>Computers</MenuItem>
-                  <MenuItem value={20}>Education</MenuItem>
-                  <MenuItem value={30}>	Transportation</MenuItem>
-                  <MenuItem value={20}>Government</MenuItem>
-                  <MenuItem value={30}>Information Technology</MenuItem>
+                  <MenuItem value={40}>Education</MenuItem>
+                  <MenuItem value={50}>	Transportation</MenuItem>
+                  <MenuItem value={60}>Government</MenuItem>
+                  <MenuItem value={70}>Information Technology</MenuItem>
 
                 </Select>
               </FormControl>
@@ -175,6 +189,7 @@ function BrandRegistration({ setDatadataForm, isValidation }) {
                 name='tocksymbol'
                 onChange={handleChange}
                 size="small"
+                value={data?.tocksymbol}
               />
               {!data?.tocksymbol && isValidation && <p className="errText">Please enter Stock Symbol</p>}
 
@@ -196,13 +211,13 @@ function BrandRegistration({ setDatadataForm, isValidation }) {
                   <FormControlLabel
                     control={<Checkbox />}
                     label="Publicily traded company"
-                    checked={data?.PublicilyTradedCompany}
+                    checked={data?.PublicilyTradedCompany ? true : false}
                     onChange={(check) => setData({ ...data, PublicilyTradedCompany: check?.target.checked })}
                   />
                   <FormControlLabel
                     control={<Checkbox />}
                     label="Private company"
-                    checked={data?.PrivateCompany}
+                    checked={data?.PrivateCompany ? true : false}
                     onChange={(check) => setData({ ...data, PrivateCompany: check?.target.checked })}
                   />
                 </FormGroup>
@@ -210,11 +225,11 @@ function BrandRegistration({ setDatadataForm, isValidation }) {
                   <FormControlLabel
                     control={<Checkbox />}
                     label="Non profit organisation"
-                    checked={data?.NonProfit}
+                    checked={data?.NonProfit ? true : false}
                     onChange={(check) => setData({ ...data, NonProfit: check?.target.checked })}
                   />
                   <FormControlLabel control={<Checkbox />} label="Government"
-                    checked={data?.Government}
+                    checked={data?.Government ? true : false}
                     onChange={(check) => setData({ ...data, Government: check?.target.checked })}
                   />
                 </FormGroup>

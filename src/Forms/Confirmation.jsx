@@ -9,6 +9,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 //---------- components ---------
 function Confirmation(props) {
+const [isValidation , setIsIsValidation]=React.useState(false)
+
   //---------- main view
   return (
     <div>
@@ -101,9 +103,12 @@ function Confirmation(props) {
           </div>
           <div className="input3">
             <div className="inputfield">
-              <div className="checkbox" style={{}}>
-                <FormGroup>
-                  <FormControlLabel control={<Checkbox defaultChecked />} />
+              <div className="checkbox" >
+                {/* <FormGroup style={{flexDirection:"row"}}> */}
+                  <FormControlLabel control={<Checkbox  />} 
+                    checked={isValidation}
+                    onChange={(check) => setIsIsValidation( check?.target.checked)}
+                  style={{margin:0,alignItems:"baseline"}}/>
                   <p style={{ bottom: "20px" }}>
                     {" "}
                     I understand that my use of the services is governed by the{" "}
@@ -123,7 +128,7 @@ function Confirmation(props) {
                     </span>
                     .
                   </p>
-                </FormGroup>
+                {/* </FormGroup> */}
               </div>
             </div>
           </div>
