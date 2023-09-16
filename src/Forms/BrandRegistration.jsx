@@ -151,7 +151,7 @@ function BrandRegistration({ setDatadataForm, isValidation }) {
                 <Select
                   labelId="demo-simple-select-filled-label"
                   id="demo-simple-select-filled"
-                  value={data.vertical}
+                  value={data.vertical || " "}
                   name='vertical'
                   onChange={handleChange}
                 >

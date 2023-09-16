@@ -90,7 +90,7 @@ function ContactDetails({ isValidation, setDatadataForm }) {
                     id="demo-simple-select-filled"
                     name='State'
                     onChange={handleChange}
-                    value={data?.State}
+                    value={data?.State|| " "}
                   >
 
                     <MenuItem value={"Andhra Pradesh"}>Andhra Pradesh</MenuItem>
