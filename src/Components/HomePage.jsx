@@ -50,7 +50,7 @@ export default function HomePage() {
       dataForm?.vertical && dataForm?.businessName && dataForm?.businessID
     )
     ) {
-      StoreLocalstorage("ragistrasion",dataForm)
+      StoreLocalstorage("registration",dataForm)
       handleNextButton()
     }
     else if (dataSecand?.business_address && dataSecand?.State && dataSecand?.Postal_code && dataSecand?.primary_phone
@@ -73,6 +73,8 @@ export default function HomePage() {
   const handleReset = () => {
     setActiveStep(0);
     ClearStorage()
+    setDataSecand({})
+    setDataForm({})
   };
 
   //---------- main view

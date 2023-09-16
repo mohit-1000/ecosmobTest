@@ -11,16 +11,17 @@ import { GetDataLocalstorage } from "../Components/Helper";
 //---------- components ---------
 function Preview(props) {
 const[ data,setData]=useState({})
-
+const [registrationData , setRegistrationData] = useState({})
+const [isValidation , setIsIsValidation]=React.useState(false)
   useEffect(()=>{
-    GetDataLocalstorage("ragistrasion").then((value) => {
+    GetDataLocalstorage("registration").then((value) => {
+      console.log("registration",value);
       if (value) {
-        setData({...data,...value})
+        setRegistrationData(value)
       }
     });
-
     GetDataLocalstorage("contactDetails").then((value) => {
-      // console.log("value",value);
+      console.log("value",value);
       if (value) {
         setData({...data,...value})
       }
@@ -48,25 +49,25 @@ const[ data,setData]=useState({})
                 <td>Legal Business Name</td>
                 <td className=" td3"></td>
                 <td className=" td3"></td>
-                <td className=" td3"> {data?.businessName||''}</td>
+                <td className=" td3"> {registrationData?.businessName||''}</td>
               </tr>
               <tr>
                 <td>Federal business ID</td>
                 <td className=" td3"></td>
                 <td className=" td3"></td>
-                <td className=" td3">{data?.businessID||''}</td>
+                <td className=" td3">{registrationData?.businessID||''}</td>
               </tr>
               <tr>
                 <td>Vertical</td>
                 <td className=" td3"></td>
                 <td className=" td3"></td>
-                <td className=" td3">{data?.vertical||''}</td>
+                <td className=" td3">{registrationData?.vertical||''}</td>
               </tr>
               <tr>
                 <td>Stock Symbol</td>
                 <td className=" td3"></td>
                 <td className=" td3"></td>
-                <td className=" td3">{data?.tocksymbol||''}</td>
+                <td className=" td3">{registrationData?.tocksymbol||''}</td>
               </tr>
               {/* <tr>
                 <td>Business Type</td>
@@ -158,9 +159,12 @@ const[ data,setData]=useState({})
           </div>
           <div className="input3">
             <div className="inputfield">
-              <div className="checkbox" style={{}}>
-                <FormGroup>
-                  <FormControlLabel control={<Checkbox defaultChecked />} />
+            <div className="checkbox" >
+                {/* <FormGroup style={{flexDirection:"row"}}> */}
+                  <FormControlLabel control={<Checkbox  />} 
+                    checked={isValidation}
+                    onChange={(check) => setIsIsValidation( check?.target.checked)}
+                  style={{margin:0,alignItems:"baseline"}}/>
                   <p style={{ bottom: "20px" }}>
                     {" "}
                     I understand that my use of the services is governed by the{" "}
@@ -180,7 +184,7 @@ const[ data,setData]=useState({})
                     </span>
                     .
                   </p>
-                </FormGroup>
+                {/* </FormGroup> */}
               </div>
             </div>
           </div>

@@ -20,7 +20,7 @@ function BrandRegistration({ setDatadataForm, isValidation }) {
   //---------- life cycles section
 
   useEffect(() => {
-    GetDataLocalstorage("ragistrasion").then((data) => {
+    GetDataLocalstorage("registration").then((data) => {
       if (data) {
         setData(data)
       }
@@ -151,17 +151,17 @@ function BrandRegistration({ setDatadataForm, isValidation }) {
                 <Select
                   labelId="demo-simple-select-filled-label"
                   id="demo-simple-select-filled"
-                  value={data.vertical ? 20 :""}
+                  value={data.vertical}
                   name='vertical'
                   onChange={handleChange}
                 >
-                  <MenuItem value={10}>Aerospace (aircraft manufacturing)</MenuItem>
-                  <MenuItem value={20}>Chemical (manufacturing)</MenuItem>
-                  <MenuItem value={30}>Computers</MenuItem>
-                  <MenuItem value={40}>Education</MenuItem>
-                  <MenuItem value={50}>	Transportation</MenuItem>
-                  <MenuItem value={60}>Government</MenuItem>
-                  <MenuItem value={70}>Information Technology</MenuItem>
+                  <MenuItem value={"Aerospace (aircraft manufacturing)"}>Aerospace (aircraft manufacturing)</MenuItem>
+                  <MenuItem value={"Chemical (manufacturing)"}>Chemical (manufacturing)</MenuItem>
+                  <MenuItem value={"Computers"}>Computers</MenuItem>
+                  <MenuItem value={"Education"}>Education</MenuItem>
+                  <MenuItem value={"Transportation"}>	Transportation</MenuItem>
+                  <MenuItem value={"Government"}>Government</MenuItem>
+                  <MenuItem value={"Information Technology"}>Information Technology</MenuItem>
 
                 </Select>
               </FormControl>

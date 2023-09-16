@@ -90,15 +90,15 @@ function ContactDetails({ isValidation, setDatadataForm }) {
                     id="demo-simple-select-filled"
                     name='State'
                     onChange={handleChange}
-                    value={data?.State||20}
+                    value={data?.State}
                   >
 
-                    <MenuItem value={10}>Andhra Pradesh</MenuItem>
-                    <MenuItem value={20}>Rajasthan</MenuItem>
-                    <MenuItem value={30}>Uttar Pradesh</MenuItem>
-                    <MenuItem value={40}>Maharashtra</MenuItem>
-                    <MenuItem value={50}>Karnataka</MenuItem>
-                    <MenuItem value={60}>Gujarat</MenuItem>
+                    <MenuItem value={"Andhra Pradesh"}>Andhra Pradesh</MenuItem>
+                    <MenuItem value={"Rajasthan"}>Rajasthan</MenuItem>
+                    <MenuItem value={"Uttar Pradesh"}>Uttar Pradesh</MenuItem>
+                    <MenuItem value={"Maharashtra"}>Maharashtra</MenuItem>
+                    <MenuItem value={"Karnataka"}>Karnataka</MenuItem>
+                    <MenuItem value={"Gujarat"}>Gujarat</MenuItem>
                   </Select>
                   {!data?.State && isValidation && <p className="errText">Please select state</p>}
                 </FormControl>
