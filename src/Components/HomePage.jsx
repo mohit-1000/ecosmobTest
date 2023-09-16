@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import BrandRegistration from '../Forms/BrandRegistration';
 import ContactDetails from '../Forms/ContactDetails';
 import Confirmation from '../Forms/Confirmation';
-import { StoreLocalstorage } from './Helper';
+import { ClearStorage, StoreLocalstorage } from './Helper';
 import Preview from '../Forms/Previewpage';
 
 //----------- constant ----------
@@ -72,6 +72,7 @@ export default function HomePage() {
   //------ handle reset page navigate
   const handleReset = () => {
     setActiveStep(0);
+    ClearStorage()
   };
 
   //---------- main view

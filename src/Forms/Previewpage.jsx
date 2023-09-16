@@ -60,20 +60,21 @@ const[ data,setData]=useState({})
                 <td>Vertical</td>
                 <td className=" td3"></td>
                 <td className=" td3"></td>
-                <td className=" td3">{data?.businessID||''}</td>
+                <td className=" td3">{data?.vertical||''}</td>
               </tr>
               <tr>
                 <td>Stock Symbol</td>
                 <td className=" td3"></td>
                 <td className=" td3"></td>
-                <td className=" td3">NSE</td>
+                <td className=" td3">{data?.tocksymbol||''}</td>
               </tr>
-              <tr>
+              {/* <tr>
                 <td>Business Type</td>
                 <td className=" td3"></td>
                 <td className=" td3"></td>
-                <td className=" td3">Publicly traded company</td>
-              </tr>
+                <td className=" td3">{data?.business_address||''}</td>
+
+              </tr> */}
             </table>
             <br />
             <table>
@@ -85,31 +86,31 @@ const[ data,setData]=useState({})
               </tr>
               <tr>
                 <td> Business address</td>
-                <td className=" td3"> 10. Downing Street.</td>
-                <td className=" td3">London</td>
-                <td className=" td3">SE1 9AA</td>
+                <td className=" td3"> {data?.business_address||''}</td>
+                <td className=" td3">{data?.State||""}</td>
+                <td className=" td3">{data?.Postal_code||""}</td>
               </tr>
               <tr>
                 <td>Primary business phone</td>
-                <td className=" td3">+44 20 7946 0612</td>
+                <td className=" td3">{data?.phone_number||""}</td>
                 <td className=" td3"></td>
                 <td className=" td3"></td>
               </tr>
               <tr>
                 <td>Support phone number</td>
-                <td className=" td3">+44 20 7946 0612</td>
+                <td className=" td3">{data?.primary_phone||""}</td>
                 <td></td>
                 <td></td>
               </tr>
               <tr>
                 <td>Business website</td>
-                <td className=" td3">www.google.com</td>
+                <td className=" td3">{data?.website||""}</td>
                 <td></td>
                 <td></td>
               </tr>
               <tr>
                 <td>Support email</td>
-                <td className=" td3">www.google.com</td>
+                <td className=" td3">{data?.email||""}</td>
                 <td></td>
                 <td></td>
               </tr>
